@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
-
+import TaskForm from "./TaskForm";
+import React, { useState } from "react";
+import Task from "./Task";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Button from "react-bootstrap/Button";
 function App() {
+  const [currentTasks, setCurrentTasks] = useState([]);
+  const getTask = (newTask) => {
+    setCurrentTasks((oldArrayTask) => [...oldArrayTask, newTask]);
+  };
+  const handleClick = () => {
+    setCurrentTasks([]);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <>
+      <div>
+        <h1 style={{ textAlign: "center" }}>To Do List</h1>
+        <div
+          style={{
+            width: "500px",
+            height: "600px",
+            margin: "auto",
+            marginTop: "2%",
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <TaskForm newTask={getTask} />
+          <Task tasks={currentTasks} />
+          <Button
+            variant="primary"
+            style={{ marginBottom: "20px" }}
+            type="submit"
+            onClick={handleClick}
+          >
+            Delete All
+          </Button>{" "}
+        </div>
+      </div>
+    </>
   );
 }
 

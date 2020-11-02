@@ -1,0 +1,8 @@
+.cbox4 {
+  font-size: 5em;
+  margin-right: 10px;
+}
+input[type="checkbox"]:checked + label {
+  color: black;
+  text-decoration: line-through;
+}
