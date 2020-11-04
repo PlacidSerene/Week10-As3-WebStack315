@@ -10,6 +10,7 @@ const Task = (props) => {
       <Jumbotron style={{ backgroundColor: "white", padding: "0.5%" }}>
         <h2 style={{ textAlign: "center" }}>Task Lists</h2>
         {props.tasks.map((task, i) => {
+          console.log(i);
           return (
             <div
               key={i}
@@ -21,14 +22,7 @@ const Task = (props) => {
               }}
             >
               <input type="checkbox" className="cbox4" />
-              <label for="cbox4">{task}</label>
-              <Button
-                style={{ float: "right" }}
-                variant="link"
-                onClick={() => props.tasks.splice(i, 1)}
-              >
-                Delete
-              </Button>
+              <label htmlFor="cbox4">{task}</label>
               <br />
             </div>
           );

@@ -1,9 +1,14 @@
+// Import Stuff
+
 import TaskForm from "./TaskForm";
 import React, { useState } from "react";
-import Task from "./Task";
+// import Task from "./Task";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
+import "./Task.css";
+
+// App
 function App() {
   const [currentTasks, setCurrentTasks] = useState([]);
   const getTask = (newTask) => {
@@ -12,6 +17,23 @@ function App() {
   const handleClick = () => {
     setCurrentTasks([]);
   };
+  const myFunction = (array, index) => {
+    for (var i = 0; i < array.length; i++) {
+      if (i == index) {
+        array.splice(i, 1);
+      }
+    }
+    return array;
+  };
+  const removeItem = (id) => {
+    // let newArrayTask = myFunction(currentTasks, id);
+
+    let newArrayTask = currentTasks.filter(
+      (task) => currentTasks.findIndex(task) !== id
+    );
+    setCurrentTasks(newArrayTask);
+  };
+
   return (
     <>
       <div>
@@ -25,7 +47,31 @@ function App() {
           }}
         >
           <TaskForm newTask={getTask} />
-          <Task tasks={currentTasks} />
+          {currentTasks.map((task, i) => {
+            console.log(currentTasks);
+            return (
+              <div
+                key={i}
+                style={{
+                  border: "solid #c060a1",
+                  borderRadius: "5px",
+                  marginBottom: "5px",
+                  paddingTop: "2%",
+                }}
+              >
+                <input type="checkbox" className="cbox4" />
+                <label htmlFor="cbox4">{task}</label>
+                <Button
+                  style={{ float: "right" }}
+                  variant="link"
+                  onClick={() => removeItem(i)}
+                >
+                  Delete
+                </Button>
+                <br />
+              </div>
+            );
+          })}
           <Button
             variant="primary"
             style={{ marginBottom: "20px" }}
