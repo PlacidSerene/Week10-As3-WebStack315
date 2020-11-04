@@ -28,9 +28,7 @@ function App() {
   const removeItem = (id) => {
     // let newArrayTask = myFunction(currentTasks, id);
 
-    let newArrayTask = currentTasks.filter(
-      (task) => currentTasks.findIndex(task) !== id
-    );
+    let newArrayTask = myFunction(currentTasks, id);
     setCurrentTasks(newArrayTask);
   };
 
